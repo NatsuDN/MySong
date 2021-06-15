@@ -282,4 +282,15 @@ router.get('/collection11', function(req, res){
     });
 });
 
+router.delete('/user/:id', function(req, res){
+    User.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+            res.redirect("/manager/");
+        } else {
+            res.redirect("/manager/");
+        }
+    });
+});
+
 module.exports = router;

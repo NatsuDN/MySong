@@ -105,10 +105,16 @@ router.get('/:id/edit', middleware.checkCollectionOwner, function(req, res){
     });
 });
 
-router.put('/:id', upload.single('image'), function(req, res){
-    if(req.file){
-        req.body.collection.image = '/uploads/'+ req.file.filename;
-    }
+router.put('/:id', upload.any([{name: 'image'}, {name: 'audio'}]), function(req, res){
+    req.files.forEach(element => {
+        if(element) {
+            if(element.fieldname == 'image') {
+                req.body.collection.image = '/uploads/' + element.filename;
+            } else if (element.fieldname == 'audio') {
+                req.body.collection.audio = '/uploads/' + element.filename;
+            }
+        }
+    });
     Collection.findByIdAndUpdate(req.params.id, req.body.collection, function(err, updatedCollection){
         if(err){
             res.redirect('/collection/');
