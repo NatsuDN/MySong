@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs') %>
+<div class="login">
+    <h2>Login with your account</h2>
+    <form action='/login' method='POST'>
+        <br>
+        <p>Username</p>
+        <br>
+        <input type='text' name='username'>
+        <br><br><br>
+        <p>Password</p>
+        <br>
+        <input type='password' name='password'>
+        <br><br><br><br><br><br>
+        <input type='submit' value='Login' id="login" class="button">
+    </form>    
+</div>
+<img src='/images/mysong.png' class="login">
+
+<%- include('partials/footer.ejs') %>

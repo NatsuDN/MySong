@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<div class="favorite">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-5 g-5">
+            <% Favorite.forEach(function(favorite){  %>
+                <a href="/collection/<%= favorite.song %>">
+                <div class="downhome">
+                    <form id = 'delete-form' action = '/favorite/<%= favorite._id %>?_method=DELETE' method='POST'>
+                        <button type='submit' class="fas fa-heart" onclick="return confirm('Are you sure you want to Remove Favorite?');"></button>
+                    </form>  
+                    <img src='<%= favorite.image %>'>
+                    <p class="title"><%= favorite.title %></p> 
+                    <p class="artist"><%= favorite.artist %></p>
+                </div>
+                </a>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,60 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<div class="editsong">
+  <div class='container'>
+  <form action='/collection/<%= collection._id %>?_method=PUT' method='POST' enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Song title</label>
+        <input type="text" class="form-control" name='collection[title]' placeholder='<%= collection.title %>' value = '<%= collection.title %>'>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Artist</label>
+        <input type="text" class="form-control" name='collection[artist]' placeholder='<%= collection.artist %>' value = '<%= collection.artist %>'>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Song genre</label>
+        <select type="text" class="form-control" name='collection[genre]'>
+          <option value = '<%= collection.genre %>'></option>
+          <option value="R&B">R&B</option>
+          <option value="Pop">Pop</option>
+          <option value="Rock">Rock</option>
+          <option value="Hip Hop">Hip Hop</option>
+          <option value="Classic">Classic</option>
+          <option value="Electronic">Electronic</option>
+          <option value="Jazz">Jazz</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Song lyrics</label>
+        <input type="text" class="form-control" name='collection[lyrics]' placeholder='<%= collection.lyrics %>' value = '<%= collection.lyrics %>'>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Image</label>
+        <br>
+        <img src='<%= collection.image %>' width = '300px'>
+        <br>
+        <br>
+        <input type="file" class="form-control" name='image' accept="image/*">
+      </div>
+      <div class="mb-3">
+        <br>
+        <label  class="form-label">Audio file</label>
+        <br>
+        <audio controls="controls">
+          <source src="<%= collection.audio %>"/>
+          <source src="<%= collection.audio %>"/>
+        </audio>
+        <br><br>
+        <input type="file" class="form-control" name='audio' accept="audio/*">
+      </div>
+      <br>
+      <button type="submit" class="button">Submit</button>
+      <a href='/collection/<%= collection._id %>' class="button">Exit</a>
+      <br><br>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

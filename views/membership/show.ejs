@@ -1,0 +1,37 @@
+<%- include('../partials/header.ejs') %>
+
+<img src='/images/mysong.png' class="membership">
+<div class="membership">
+    <p class="membership">Membership</p>
+    <br>
+    <p class="data">Download & Offline song</p>
+    <div class="slot">
+        <a href='/membership/thanks/<%= currentUser._id %>' style="text-decoration: none;">
+            <div class="upleft">
+                <p>Free 1 times</p> 
+                <p>7 days</p>
+            </div>
+        </a>    
+        <a href='/membership/thanks/<%= currentUser._id %>' style="text-decoration: none;">
+            <div class="upright">
+                <p>29 BTH</p> 
+                <p>7 days</p>
+            </div>
+        </a>    
+        <a href='/membership/thanks/<%= currentUser._id %>' style="text-decoration: none;">
+            <div class="downleft">
+                <p>109 BTH</p> 
+                <p>1 Mount</p>
+            </div>
+        </a>    
+        <a href='/membership/thanks/<%= currentUser._id %>' style="text-decoration: none;">
+            <div class="downright">
+                <p>999 BTH</p> 
+                <p>1 Year</p>
+            </div>
+        </a>    
+    </div>    
+</div>
+<a href='/collection' style="text-decoration: none;" id="membership" class="button"> Exit </a>
+
+<%- include('../partials/footer.ejs') %>

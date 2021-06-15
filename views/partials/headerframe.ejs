@@ -1,0 +1,22 @@
+<div class="frame">
+    <div class="upleft">
+      <img src='/images/mysong.png'>
+    </div>
+    <div class="upright">
+      <a href='/' style="text-decoration: none;" id="logout" class="button"> Log Out </a>
+      <a href='/membership/<%= currentUser._id %>' style="text-decoration: none;" class="button"> Membership </a>
+      <% if(currentUser && currentUser.isAdmin){ %>
+        <a href='/collection/new' style="text-decoration: none;" class="button"> Add Songs </a>
+        <a href='/manager' style="text-decoration: none;" class="button"> User Management </a> 
+      <% } %> 
+    </div>
+    <div class="downleft">
+      <div class="up">
+        <a href='/collection' style="text-decoration: none;" class="button"> <img src= '/images/home.png' width = '40px' style="border-radius: 30%;"> Home </a>
+        <a href='/favorite/<%= currentUser._id %>' style="text-decoration: none;" class="button"> My Songs </a>
+      </div>
+      <div class="down">
+        <a href='/user/<%= currentUser._id %>' style="text-decoration: none;" id="profile" class="button"> <img src= '<%= currentUser.profileImage %>' width = '40px' height="40px" style="border-radius: 50%;"> <%= currentUser.username %> </a>
+      </div>  
+    </div>
+    <div class="downright">

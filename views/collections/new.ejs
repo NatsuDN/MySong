@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<div class="addsong">
+  <div class='container'>
+  <form action='/collection' method='POST' enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Song title</label>
+        <input type="text" class="form-control" name='collection[title]'>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Artist</label>
+        <input type="text" class="form-control" name='collection[artist]'>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Song genre</label>
+        <select type="text" class="form-control" name='collection[genre]' id="genre">
+          <option></option>
+          <option value="R&B">R&B</option>
+          <option value="POP">Pop</option>
+          <option value="Rock">Rock</option>
+          <option value="Hip Hop">Hip Hop</option>
+          <option value="Classic">Classic</option>
+          <option value="Electronic">Electronic</option>
+          <option value="Jazz">Jazz</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Song lyrics</label>
+        <input type="text" class="form-control" name='collection[lyrics]'>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Song image</label>
+        <input type="file" class="form-control" name='image' accept="image/*">
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Audio file</label>
+        <input type="file" class="form-control" name='audio' accept="audio/*">
+      </div>
+      <button type="submit" class="button">Add Song</button>
+      <a href='/collection' class="button">Exit</a>
+    </form>
+  </div>
+</div>
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

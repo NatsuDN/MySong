@@ -1,0 +1,55 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<div class="song">
+    <div class="left">
+        <img src="<%= collection.image %>">
+    </div>
+    <div class="center">
+        <p>Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<%=collection.title%></p>
+        <p>Artist&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<%=collection.artist%></p>
+        <p>Genre&nbsp;&nbsp;:&nbsp;&nbsp;<%=collection.genre%></p>
+        <div class="lyrics">
+            <p>Lyrics&nbsp;&nbsp;&nbsp;:</p>
+            <p><%=collection.lyrics%></p>
+        </div>    
+        <br>
+        <% if(currentUser && currentUser.isAdmin){ %>
+            <a href='/collection/<%= collection._id %>/edit' class="button">Edit Song</a>
+            <form id = 'delete-form' action = '/collection/<%= collection._id %>?_method=DELETE' method='POST'>
+                <button type='submit' class="button" onclick="return confirm('Are you sure you want to Remove Song?');">Delete Song</button>
+            </form>
+        <% } %>
+        <form id="fav" action="/collections/<%= collection._id %>" method="POST" class="heart">
+            <input type="text" name="favorite[author]" value="<%= currentUser._id %>" hidden/>
+            <input type="text" name="favorite[title]" value="<%= collection.title %>" hidden/>
+            <input type="text" name="favorite[artist]" value="<%= collection.artist %>" hidden/>
+            <input type="text" name="favorite[image]" value="<%= collection.image %>" hidden/>
+            <button type="submit" class="fas fa-heart"></button>
+        </form>
+    </div>  
+    <div class="right">
+        <p><a class="button" href = '/collection/<%= collection._id %>/comments/new'>Add new comment</a></p>   
+        <% collection.comments.forEach(function(comment){ %>
+            <p>
+                <strong><%= comment.author.username %></strong> - <%= comment.text %>
+            </p>  
+            <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                <a href='/collection/<%= collection._id %>/comments/<%= comment._id %>/edit' id="edit" class="button">Edit Comment</a>
+                <form id = 'delete-form' action = '/collection/<%= collection._id %>/comments/<%= comment._id %>?_method=DELETE' method='POST'>
+                    <button type='submit' class="button" onclick="return confirm('Are you sure you want to Remove Comment?');">Delete Comment</button>
+                </form>
+            <% } %> 
+        <% }); %>
+    </div>  
+    <div class="down">
+        <audio controls="controls">
+            <source src="<%= collection.audio %>"/>
+            <source src="<%= collection.audio %>"/>
+        </audio>
+        <a href='/collection' class="button">Go back</a>
+    </div>
+</div>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

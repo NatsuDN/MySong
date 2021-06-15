@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<div class="comment">
+  <div class='commentout'>    
+    <form action='/collection/<%= collection_id %>/comments/<%= comment._id %>?_method=PUT' method='POST'>
+      <div>
+        <label class="form-label">Edit Comment</label>
+        <br><br>
+        <input type="text" class="form-control" name='comment[text]' placeholder='<%= comment.text %>' value = '<%= comment.text %>'>
+      </div>
+      <br><br>
+      <button type="submit" class="button">Submit</button>
+      <a href="/collection" class="button">Go Back</a>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

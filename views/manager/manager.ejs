@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Profile image</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% user.forEach(function(user){  %>
+            <tr>
+                <td><img src='<%= user.profileImage %>'></td>
+                <td>&nbsp;&nbsp;<%= user.username %></td>
+                <td>&nbsp;&nbsp;<%= user.email %></td>
+                <td>&nbsp;&nbsp;<%= user.gender %></td>
+                <td><%= user.day %>/<%= user.month %>/<%= user.year %></td>
+                <% if( user.isAdmin ){ %>
+                    <td>Admin</td>
+                <% } else { %>
+                    <td>User</td>
+                <% } %>
+                <td>
+                    <form id = 'delete-form' action = '/user/<%= user._id %>?_method=DELETE' method='POST'>
+                        <button type='submit' class="button" onclick="return confirm('Are you sure you want to Remove User?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>

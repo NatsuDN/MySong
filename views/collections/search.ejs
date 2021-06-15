@@ -1,0 +1,53 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/headerframe.ejs') %>
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-3 row-cols-md-5 g-5">
+            <div class="uphome">
+                <select name="title" onchange="location = this.value;">
+                    <option>Title</option>
+                    <option value="/collection1">A-Z,ก-ฮ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="/collection2">Z-A,ฮ-ก&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                </select>
+                <select name="artist" onchange="location = this.value;">
+                    <option>Artist</option>
+                    <option value="/collection3">A-Z,ก-ฮ</option>
+                    <option value="/collection4">Z-A,ฮ-ก</option>
+                </select>
+                <select name="genre" onchange="location = this.value;">
+                    <option>Genre</option>
+                    <option value="/collection5">R&B</option>
+                    <option value="/collection6">Pop</option>
+                    <option value="/collection7">Rock</option>
+                    <option value="/collection8">Hip Hop</option>
+                    <option value="/collection9">Classic</option>
+                    <option value="/collection10">Electronic&nbsp;&nbsp;</option>
+                    <option value="/collection11">Jazz</option>
+                </select>
+                <form action="/collection/search" method="POST">
+                    <div class="search">
+                        <button type="submit" class="searchButton"><img src= '/images/search.png' width = '40px' style="border-radius: 30%;"> Search</button>
+                        <input type="text" class="searchTerm" name="search"/>
+                    </div>
+                </form>
+            </div> 
+            <% if(collection == '') { %>
+                <div class="notsearch">
+                    <p>Please, write something for search.</p>
+                </div>
+            <% } else { %>
+                <% collection.forEach(function(collection){  %>
+                    <a href="/collection/<%= collection._id %>">
+                        <div class="downhome">
+                        <img src='<%= collection.image %>'>
+                        <p class="title"><%= collection.title %></p> 
+                        <p class="artist"><%= collection.artist %></p>
+                        </div>
+                    </a>
+                <% }); %>
+            <% } %>
+            </div>
+        </div>
+
+<%- include('../partials/footerframe.ejs') %>
+<%- include('../partials/footer.ejs') %>
