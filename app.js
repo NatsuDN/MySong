@@ -48,7 +48,11 @@ app.use('/collection/:id/comments', commentRoutes);
 
 app.listen(3000, function(){
     console.log('My song is started.');
-});    
+});   
+
+app.get('*', function(req, res){
+    res.send('Please beware your route.');
+});
 
 
 
